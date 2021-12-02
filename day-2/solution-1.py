@@ -1,7 +1,7 @@
 hor = 0
 depth = 0
 
-for line in open("input-1.txt"):
+for line in open("input.txt"):
     dir, dist = line.split(' ')
     if dir == 'forward':
         hor += int(dist)

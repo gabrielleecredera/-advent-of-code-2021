@@ -1,7 +1,7 @@
 increases = 0
 last_depth_sum = 0
 
-depths = [int(depth) for depth in open("input-1.txt").read().splitlines()]
+depths = [int(depth) for depth in open("input.txt").read().splitlines()]
 
 for index, depth in enumerate(depths):
     if index == len(depths) - 2:
