@@ -1,15 +1,7 @@
 octs = [] # y then x
 flashes = 0
 
-def get_spot(x, y):
-    if x < 0 or y < 0:
-        return 1
-    try:
-        return octs[y][x]
-    except IndexError:
-        return 1
-
-def trigger_flashes(x, y, from_x, from_y):
+def trigger_flashes(x, y):
     if octs[y][x] <= 9 or (x, y) in flashed:
         return
     flashed.append((x, y))
@@ -18,8 +10,7 @@ def trigger_flashes(x, y, from_x, from_y):
             continue
         octs[target_y][target_x] += 1
         if (target_x, target_y) not in flashed:
-            trigger_flashes(target_x, target_y, x, y)
-    
+            trigger_flashes(target_x, target_y)
 
 for line in open('input.txt'):
     octs.append([int(char) for char in line[:-1]])
@@ -31,7 +22,7 @@ for step in range(100):
             octs[y][x] += 1
     for y in range(len(octs)):
         for x in range(len(octs[0])):
-            trigger_flashes(x, y, x, y)
+            trigger_flashes(x, y)
     for y in range(len(octs)):
         for x in range(len(octs[0])):
             if octs[y][x] > 9:
